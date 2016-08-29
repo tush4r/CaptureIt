@@ -11,11 +11,16 @@ import UIKit
 class CaptureImageViewController: UIViewController {
     
     private let photoView = UIImageView()
+    var imageData = UIImage()
+    
 
+    @IBOutlet weak var capturedImage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        setImageView()
-
+        print(imageData)
+        capturedImage.contentMode = .ScaleAspectFit
+        capturedImage.image = imageData
+        //setImageView()
         // Do any additional setup after loading the view.
     }
     
@@ -30,7 +35,6 @@ class CaptureImageViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation

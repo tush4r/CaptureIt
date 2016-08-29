@@ -14,8 +14,11 @@ final internal class CaptureItViewController: UIViewController {
     private let captureSession = AVCaptureSession()
     private var captureDevice:AVCaptureDevice?
     private var previewLayer:AVCaptureVideoPreviewLayer?
-    var output = AVCaptureStillImageOutput()
-    var videoPreviewLayer: AVCaptureVideoPreviewLayer?
+    private var output = AVCaptureStillImageOutput()
+    private var videoPreviewLayer: AVCaptureVideoPreviewLayer?
+    private var photo = UIImage()
+    
+    
     
     @IBOutlet private weak var takePhoto: UIButton!
     
@@ -39,10 +42,7 @@ final internal class CaptureItViewController: UIViewController {
         output.outputSettings = [ AVVideoCodecKey: AVVideoCodecJPEG ]
         captureSession.addOutput(output)
         
-        print(captureDevice)
-        
         if captureDevice != nil {
-            print("HERE")
             beginSession()
         }
     }
@@ -54,6 +54,7 @@ final internal class CaptureItViewController: UIViewController {
             print(error)
             errorOccured()
         }
+        
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         self.view.layer.addSublayer(previewLayer!)
         previewLayer?.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height/1.5)
@@ -74,14 +75,26 @@ final internal class CaptureItViewController: UIViewController {
             guard sampleBuffer != nil && error == nil else { self.errorOccured(); return }
             
             let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(sampleBuffer)
-            guard let image = UIImage(data: imageData) else {
-                self.errorOccured()
-                return
-            }
+            guard let image = UIImage(data: imageData) else { self.errorOccured(); return }
+            self.photo = image
             print(image)
-             self.performSegueWithIdentifier("image", sender: nil)
+            self.performSegueWithIdentifier("image", sender: self)
         }
         
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let identifier = segue.identifier {
+            switch identifier {
+            case "image" :
+                if let viewcontroller = segue.destinationViewController as? CaptureImageViewController {
+                    viewcontroller.imageData = photo
+                }
+            default: break
+            }
+            
+        }
     }
 
     private func errorOccured() {
