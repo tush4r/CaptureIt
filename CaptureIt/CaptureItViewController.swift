@@ -14,6 +14,10 @@ final internal class CaptureItViewController: UIViewController {
     private let captureSession = AVCaptureSession()
     private var captureDevice:AVCaptureDevice?
     private var previewLayer:AVCaptureVideoPreviewLayer?
+    var output = AVCaptureStillImageOutput()
+    var videoPreviewLayer: AVCaptureVideoPreviewLayer?
+    
+    @IBOutlet private weak var takePhoto: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +27,7 @@ final internal class CaptureItViewController: UIViewController {
     }
     
     private func AVCSessionProperties() {
-        captureSession.sessionPreset = AVCaptureSessionPresetHigh
+        captureSession.sessionPreset = AVCaptureSessionPresetPhoto
         let devices = AVCaptureDevice.devices()
         for device in devices {
             if (device.hasMediaType(AVMediaTypeVideo)) {
@@ -32,6 +36,9 @@ final internal class CaptureItViewController: UIViewController {
                 }
             }
         }
+        
+        output.outputSettings = [ AVVideoCodecKey: AVVideoCodecJPEG ]
+        captureSession.addOutput(output)
         
         print(captureDevice)
         
@@ -60,7 +67,20 @@ final internal class CaptureItViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func takePhoto(sender: AnyObject) {
+        guard let connection = output.connectionWithMediaType(AVMediaTypeVideo) else { return }
+        connection.videoOrientation = .Portrait
+        
+        output.captureStillImageAsynchronouslyFromConnection(connection) { (sampleBuffer, error) in
+            guard sampleBuffer != nil && error == nil else { return }
+            
+            let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(sampleBuffer)
+            guard let image = UIImage(data: imageData) else { return }
+        }
+    }
 
+    
+    
     /*
     // MARK: - Navigation
 

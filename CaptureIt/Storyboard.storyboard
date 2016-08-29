@@ -17,9 +17,24 @@
                     <view key="view" contentMode="scaleToFill" id="FUy-2m-rec">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y1u-mt-Mt1">
+                                <state key="normal" title="Take Photo"/>
+                                <connections>
+                                    <action selector="takePhoto:" destination="uD7-zb-MCW" eventType="touchUpInside" id="wVP-Et-4qc"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="y1u-mt-Mt1" firstAttribute="centerX" secondItem="FUy-2m-rec" secondAttribute="centerX" id="25p-g4-db4"/>
+                            <constraint firstItem="Ji8-xg-NjA" firstAttribute="top" secondItem="y1u-mt-Mt1" secondAttribute="bottom" constant="42" id="jok-7R-Z57"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="CaptureIt" id="nXM-cr-AyH"/>
+                    <connections>
+                        <outlet property="takePhoto" destination="y1u-mt-Mt1" id="sGg-Jy-dhV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ePx-wH-Ael" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
