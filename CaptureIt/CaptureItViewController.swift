@@ -23,7 +23,7 @@ final internal class CaptureItViewController: UIViewController {
     }
     
     private func AVCSessionProperties() {
-        captureSession.sessionPreset = AVCaptureSessionPresetLow
+        captureSession.sessionPreset = AVCaptureSessionPresetHigh
         let devices = AVCaptureDevice.devices()
         for device in devices {
             if (device.hasMediaType(AVMediaTypeVideo)) {
@@ -47,10 +47,11 @@ final internal class CaptureItViewController: UIViewController {
         } catch let error {
             print(error)
         }
-        
+        let width = UIScreen.mainScreen().bounds.size.width
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         self.view.layer.addSublayer(previewLayer!)
-        previewLayer?.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height/2)
+        previewLayer?.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height/1.5)
+        previewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
         captureSession.startRunning()
     }
 
