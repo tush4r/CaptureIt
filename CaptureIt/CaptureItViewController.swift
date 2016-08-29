@@ -18,8 +18,6 @@ final internal class CaptureItViewController: UIViewController {
     private var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     private var photo = UIImage()
     
-    
-    
     @IBOutlet private weak var takePhoto: UIButton!
     
     override func viewDidLoad() {
@@ -61,13 +59,8 @@ final internal class CaptureItViewController: UIViewController {
         previewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
         captureSession.startRunning()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
-    @IBAction func takePhoto(sender: AnyObject) {
+    @IBAction private func takePhoto(sender: AnyObject) {
         guard let connection = output.connectionWithMediaType(AVMediaTypeVideo) else { return }
         connection.videoOrientation = .Portrait
         
