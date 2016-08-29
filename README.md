@@ -1,6 +1,6 @@
 #CaptureIt
 
-Sample Swift iOS app for capturing photos - Prisma Style!
+Sample Swift iOS app for capturing photos - Capture, View!
 
 
 
