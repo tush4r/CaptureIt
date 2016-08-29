@@ -13,24 +13,30 @@ class CaptureImageViewController: UIViewController {
     private let photoView = UIImageView()
     var imageData = UIImage()
     
-
-    @IBOutlet weak var capturedImage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         print(imageData)
-        capturedImage.contentMode = .ScaleAspectFit
-        capturedImage.image = imageData
-        //setImageView()
+        setImageView()
+        photoView.image = imageData
+        if photoView.image != nil {
+            self.thankYou()
+        }
         // Do any additional setup after loading the view.
     }
     
     private func setImageView() {
-        photoView.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height/1.5)
-        photoView.contentMode = .ScaleAspectFill
-        photoView.backgroundColor = .grayColor()
+        photoView.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
+        photoView.contentMode = .ScaleAspectFit
         self.view.addSubview(photoView)
     }
-
+    
+    private func thankYou() {
+            let errorView = UIAlertController(title: "Thank You", message: "Thank You for using CaptureIt app! ❤️😁👍", preferredStyle: UIAlertControllerStyle.Alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            errorView.addAction(defaultAction)
+            self.presentViewController(errorView, animated: true, completion: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

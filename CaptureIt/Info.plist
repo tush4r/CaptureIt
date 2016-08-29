@@ -6,6 +6,8 @@
 	<string>en</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Allowing Photo Access </string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Allowing Photo Storage</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

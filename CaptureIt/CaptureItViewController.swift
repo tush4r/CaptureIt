@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-final internal class CaptureItViewController: UIViewController {
+final internal class CaptureItViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     private let captureSession = AVCaptureSession()
     private var captureDevice:AVCaptureDevice?
@@ -17,8 +17,10 @@ final internal class CaptureItViewController: UIViewController {
     private var output = AVCaptureStillImageOutput()
     private var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     private var photo = UIImage()
+    private var imagePicker = UIImagePickerController()
     
     @IBOutlet private weak var takePhoto: UIButton!
+    @IBOutlet private weak var selectPhoto: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +62,7 @@ final internal class CaptureItViewController: UIViewController {
         captureSession.startRunning()
     }
     
+    
     @IBAction private func takePhoto(sender: AnyObject) {
         guard let connection = output.connectionWithMediaType(AVMediaTypeVideo) else { return }
         connection.videoOrientation = .Portrait
@@ -69,11 +72,37 @@ final internal class CaptureItViewController: UIViewController {
             
             let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(sampleBuffer)
             guard let image = UIImage(data: imageData) else { self.errorOccured(); return }
+            
             self.photo = image
-            print(image)
+            
+            UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.imageSaved(_:didFinishSavingWithError:contextInfo:)), nil)
             self.performSegueWithIdentifier("image", sender: self)
         }
-        
+    }
+    
+    func imageSaved(image: UIImage!, didFinishSavingWithError error: NSError?, contextInfo: AnyObject?) {
+            if (error != nil) {
+                print("image couldn't be saved")
+            } else {
+                print("Image saved!")
+            }
+        }
+
+    
+    @IBAction private func selectPhoto(sender: UIButton) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.SavedPhotosAlbum) {
+            imagePicker.delegate = self
+            imagePicker.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum;
+            imagePicker.allowsEditing = false
+            self.presentViewController(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
+        self.dismissViewControllerAnimated(true, completion: { () -> Void in })
+        self.photo = image
+        print(photo)
+        self.performSegueWithIdentifier("image", sender: self)
     }
     
     

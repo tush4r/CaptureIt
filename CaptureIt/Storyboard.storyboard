@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -28,16 +29,31 @@
                                     <action selector="takePhoto:" destination="uD7-zb-MCW" eventType="touchUpInside" id="wVP-Et-4qc"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="58N-9U-0TZ">
+                                <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Select from Gallery">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="selectPhoto:" destination="uD7-zb-MCW" eventType="touchUpInside" id="qU4-w7-hKc"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="Ji8-xg-NjA" firstAttribute="top" relation="lessThanOrEqual" secondItem="y1u-mt-Mt1" secondAttribute="bottom" constant="80" id="Pi3-QI-JUf"/>
+                            <constraint firstItem="Ji8-xg-NjA" firstAttribute="top" secondItem="58N-9U-0TZ" secondAttribute="bottom" constant="20" id="3qE-BB-L8X"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="58N-9U-0TZ" secondAttribute="trailing" id="7HS-8d-TfW"/>
+                            <constraint firstItem="58N-9U-0TZ" firstAttribute="top" relation="lessThanOrEqual" secondItem="y1u-mt-Mt1" secondAttribute="bottom" constant="46" id="Huf-eB-IcY"/>
+                            <constraint firstItem="Ji8-xg-NjA" firstAttribute="top" relation="lessThanOrEqual" secondItem="y1u-mt-Mt1" secondAttribute="bottom" constant="96" id="Pi3-QI-JUf"/>
                             <constraint firstItem="y1u-mt-Mt1" firstAttribute="centerX" secondItem="FUy-2m-rec" secondAttribute="centerX" id="axr-77-gBV"/>
-                            <constraint firstItem="y1u-mt-Mt1" firstAttribute="top" secondItem="qd3-Js-3QI" secondAttribute="bottom" constant="443" id="imq-w4-UeJ"/>
+                            <constraint firstItem="58N-9U-0TZ" firstAttribute="top" secondItem="y1u-mt-Mt1" secondAttribute="bottom" constant="46" id="g5S-SH-UfA"/>
+                            <constraint firstItem="y1u-mt-Mt1" firstAttribute="top" secondItem="qd3-Js-3QI" secondAttribute="bottom" constant="427" id="imq-w4-UeJ"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="58N-9U-0TZ" secondAttribute="leading" id="xhP-pJ-3z9"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="CaptureIt" id="nXM-cr-AyH"/>
                     <connections>
+                        <outlet property="selectPhoto" destination="58N-9U-0TZ" id="vnr-k8-I6t"/>
                         <outlet property="takePhoto" destination="y1u-mt-Mt1" id="sGg-Jy-dhV"/>
                         <segue destination="c9S-PI-Xoh" kind="show" identifier="image" id="yjH-id-A9j"/>
                     </connections>
