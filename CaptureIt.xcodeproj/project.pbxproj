@@ -12,6 +12,8 @@
 		99C133741D74914300D3CCD5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99C133721D74914300D3CCD5 /* LaunchScreen.storyboard */; };
 		99C1337C1D7492FB00D3CCD5 /* CaptureItViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C1337B1D7492FB00D3CCD5 /* CaptureItViewController.swift */; };
 		99C1337E1D74930500D3CCD5 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99C1337D1D74930500D3CCD5 /* Storyboard.storyboard */; };
+		99C8EC7F1D74AACB00E15A61 /* CaptureImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C8EC7E1D74AACB00E15A61 /* CaptureImageViewController.swift */; };
+		99C8EC811D74AADB00E15A61 /* CaptureImage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99C8EC801D74AADB00E15A61 /* CaptureImage.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		99C133751D74914300D3CCD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		99C1337B1D7492FB00D3CCD5 /* CaptureItViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureItViewController.swift; sourceTree = "<group>"; };
 		99C1337D1D74930500D3CCD5 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		99C8EC7E1D74AACB00E15A61 /* CaptureImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureImageViewController.swift; sourceTree = "<group>"; };
+		99C8EC801D74AADB00E15A61 /* CaptureImage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CaptureImage.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +60,9 @@
 			children = (
 				99C133691D74914300D3CCD5 /* AppDelegate.swift */,
 				99C1337B1D7492FB00D3CCD5 /* CaptureItViewController.swift */,
+				99C8EC7E1D74AACB00E15A61 /* CaptureImageViewController.swift */,
 				99C1337D1D74930500D3CCD5 /* Storyboard.storyboard */,
+				99C8EC801D74AADB00E15A61 /* CaptureImage.storyboard */,
 				99C133701D74914300D3CCD5 /* Assets.xcassets */,
 				99C133721D74914300D3CCD5 /* LaunchScreen.storyboard */,
 				99C133751D74914300D3CCD5 /* Info.plist */,
@@ -125,6 +131,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				99C133741D74914300D3CCD5 /* LaunchScreen.storyboard in Resources */,
+				99C8EC811D74AADB00E15A61 /* CaptureImage.storyboard in Resources */,
 				99C133711D74914300D3CCD5 /* Assets.xcassets in Resources */,
 				99C1337E1D74930500D3CCD5 /* Storyboard.storyboard in Resources */,
 			);
@@ -137,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99C8EC7F1D74AACB00E15A61 /* CaptureImageViewController.swift in Sources */,
 				99C1337C1D7492FB00D3CCD5 /* CaptureItViewController.swift in Sources */,
 				99C1336A1D74914300D3CCD5 /* AppDelegate.swift in Sources */,
 			);

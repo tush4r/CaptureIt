@@ -22,7 +22,6 @@ final internal class CaptureItViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         AVCSessionProperties()
-        print("DEVICES", AVCaptureDevice.devices())
         // Do any additional setup after loading the view.
     }
     
@@ -53,8 +52,8 @@ final internal class CaptureItViewController: UIViewController {
             try captureSession.addInput(AVCaptureDeviceInput(device: captureDevice))
         } catch let error {
             print(error)
+            errorOccured()
         }
-        let width = UIScreen.mainScreen().bounds.size.width
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         self.view.layer.addSublayer(previewLayer!)
         previewLayer?.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height/1.5)
@@ -72,14 +71,25 @@ final internal class CaptureItViewController: UIViewController {
         connection.videoOrientation = .Portrait
         
         output.captureStillImageAsynchronouslyFromConnection(connection) { (sampleBuffer, error) in
-            guard sampleBuffer != nil && error == nil else { return }
+            guard sampleBuffer != nil && error == nil else { self.errorOccured(); return }
             
             let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(sampleBuffer)
-            guard let image = UIImage(data: imageData) else { return }
+            guard let image = UIImage(data: imageData) else {
+                self.errorOccured()
+                return
+            }
+            print(image)
+             self.performSegueWithIdentifier("image", sender: nil)
         }
+        
     }
 
-    
+    private func errorOccured() {
+        let errorView = UIAlertController(title: "Error", message: "An Error Occured", preferredStyle: UIAlertControllerStyle.Alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        errorView.addAction(defaultAction)
+        self.presentViewController(errorView, animated: true, completion: nil)
+    }
     
     /*
     // MARK: - Navigation

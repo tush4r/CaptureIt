@@ -34,11 +34,20 @@
                     <navigationItem key="navigationItem" title="CaptureIt" id="nXM-cr-AyH"/>
                     <connections>
                         <outlet property="takePhoto" destination="y1u-mt-Mt1" id="sGg-Jy-dhV"/>
+                        <segue destination="c9S-PI-Xoh" kind="show" identifier="image" id="yjH-id-A9j"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ePx-wH-Ael" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1232.8" y="174.96251874062969"/>
+        </scene>
+        <!--captureimage-->
+        <scene sceneID="wjm-GC-7XB">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="captureimage" storyboardName="CaptureImage" referencedIdentifier="captureimage" id="c9S-PI-Xoh" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Grv-bX-B5n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1879" y="175"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="5uS-5f-76p">
